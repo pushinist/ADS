@@ -1,6 +1,5 @@
 def is_right_brackets(string):
-    brackets_storage = []  # стек для хранения открывающих скобок
-
+    brackets_storage = [] 
     
     for i in string:
         if i in '([{':

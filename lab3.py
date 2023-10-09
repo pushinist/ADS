@@ -1,5 +1,5 @@
 from math import log
-
+import time
 
 def simple_multipiers(x):
     result = []
@@ -13,6 +13,10 @@ def simple_multipiers(x):
                     break
     return result
 
+
+start = time.time()
 x = int(input("Введите число х: "))
 print("Все числа, удовлетворяющие условию:", end=' ')
 print(*sorted(simple_multipiers(x)), sep=", ")
+end = time.time() - start
+print(end)

@@ -63,7 +63,7 @@ def evaluate(lst):
     return numbers
 
 def calculate(lst):
-    stack = []  # стек для хранения чисел
+    stack = [] 
     for i in lst:
         if i == '+':
             b = stack.pop()
@@ -84,7 +84,7 @@ def calculate(lst):
             b = stack.pop()
             a = stack.pop()
             if int(b) == 0:
-                raise ValueError("Деление на ноль!")
+                raise ZeroDivisionError("Деление на ноль!")
             else:
                 result = a / b
                 stack.append(result)

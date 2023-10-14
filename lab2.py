@@ -97,5 +97,7 @@ lst = list(input("Введите пример: "))
 try:
     check(lst)
     print(*calculate(evaluate(lst)))
-except ValueError as e:
+except (ValueError) as e:
+    print(e)
+except (ZeroDivisionError) as e:
     print(e)

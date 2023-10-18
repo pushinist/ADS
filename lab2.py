@@ -94,6 +94,9 @@ def calculate(lst):
     return stack
 
 lst = list(input("Введите пример: "))
+if lst[-1] != "=":
+    print("Некорректный ввод!")
+    exit()
 try:
     check(lst)
     print(*calculate(evaluate(lst)))

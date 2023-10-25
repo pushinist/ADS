@@ -9,7 +9,7 @@ def is_right_brackets(string):
                 return False
             for j in brackets_storage:
                 if i == ')' and j == '(' or i == ']' and j == '[' or i == '}' and j == '{': 
-                    brackets_storage.pop(0)
+                    brackets_storage.pop(-1)
                     break
 
     if len(brackets_storage) == 0:

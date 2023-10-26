@@ -1,10 +1,10 @@
-def check(lst):
+def check(arr):
     brackets = []
-    if len(lst) > 2 and lst[-2] in '+-*/':
+    if len(arr) > 2 and arr[-2] in '+-*/':
         raise ValueError("Некорректный ввод!")
 
-    for i in lst:
-        if '+)' in ''.join(lst) or '-)' in ''.join(lst) or '*)' in ''.join(lst) or '/)' in ''.join(lst):
+    for i in arr:
+        if '+)' in ''.join(arr) or '-)' in ''.join(arr) or '*)' in ''.join(arr) or '/)' in ''.join(arr):
             raise ValueError("Некорректный ввод!")
         if i in '([{': 
             brackets.append(i)
@@ -17,11 +17,11 @@ def check(lst):
         raise ValueError("Некорректный ввод!")
     
 
-def evaluate(lst):
+def evaluate(arr):
     numbers = []
     symbols = []
     streak = 0
-    for i in lst:
+    for i in arr:
         if i in '1234567890':
             numbers.append(int(i))
             streak = 0
@@ -62,9 +62,9 @@ def evaluate(lst):
             raise ValueError("Некорректный ввод!")
     return numbers
 
-def calculate(lst):
+def calculate(arr):
     stack = [] 
-    for i in lst:
+    for i in arr:
         if i == '+':
             b = stack.pop()
             a = stack.pop()

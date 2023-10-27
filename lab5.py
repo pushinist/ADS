@@ -6,9 +6,7 @@ def insertion_sort(arr):
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = temp
-
-
-
+    return arr
 
     
 arr = [int(x) for x in input("Введите набор чисел, разделяя их пробелом: ").split()]

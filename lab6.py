@@ -10,7 +10,8 @@ def selection_sort(arr):
     return arr
 
 
-arr = [64, 25, 12, 22, 11]
-print(selection_sort(arr))
+lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
+selection_sort(lst)
+print(f"Отсортированный список: {lst}, результат сортировки - {lst == sorted(lst)}")
 
 

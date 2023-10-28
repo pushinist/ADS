@@ -24,6 +24,13 @@ def radix_sort(arr):
         place *= 10
 
 
-arr = [121, 432, 564, 23, 1, 45, 788]
-radix_sort(arr)
-print(arr)
+lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
+arr_positive = [i for i in lst if i >= 0]
+arr_negative = [abs(i) for i in lst if i < 0]
+radix_sort(arr_positive)
+radix_sort(arr_negative)
+arr_negative = [-1 * i for i in arr_negative]
+arr_negative.reverse()
+for i in arr_positive:
+    arr_negative.append(i)
+print(f"Отсортированный список: {arr_negative}, результат сортировки - {arr_negative == sorted(lst)}")

@@ -13,5 +13,6 @@ def shell_sort(arr):
     return arr
 
 
-arr = [56, 43, 12, 78, 42, 93, 16, 55]
-print(shell_sort(arr))
+lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
+shell_sort(lst)
+print(f"Отсортированный список: {lst}, результат сортировки - {lst == sorted(lst)}")

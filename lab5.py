@@ -6,9 +6,8 @@ def insertion_sort(arr):
             arr[j + 1] = arr[j]
             j -= 1
         arr[j + 1] = temp
-    return arr
 
     
-arr = [int(x) for x in input("Введите набор чисел, разделяя их пробелом: ").split()]
-insertion_sort(arr)
-print(f"Отсортированный список: {arr}")
+lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
+insertion_sort(lst)
+print(f"Отсортированный список: {lst}, результат сортировки - {lst == sorted(lst)}")

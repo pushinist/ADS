@@ -1,6 +1,6 @@
 def counting_sort(arr, place):
     output = [0] * len(arr)
-    count = [0] * (max(arr) + 1)
+    count = [0] * 10
     for i in range(len(arr)):
         index = arr[i] // place
         count[index % 10] += 1
@@ -10,7 +10,7 @@ def counting_sort(arr, place):
     while i >= 0:
         index = arr[i] // place
         output[count[index % 10] - 1] = arr[i]
-        count[index] -= 1
+        count[index % 10] -= 1
         i -= 1
     for i in range(len(arr)):
         arr[i] = output[i]

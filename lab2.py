@@ -1,5 +1,12 @@
-def check(arr):
+import void
+
+
+def validate_expression(arr: list) -> void:
     brackets = []
+
+    if arr[-1] != "=" or arr[-2] == " " or arr[0] == " ":
+        raise ValueError("Некорректный ввод!")
+
     if len(arr) > 2 and arr[-2] in '+-*/':
         raise ValueError("Некорректный ввод!")
 
@@ -90,16 +97,19 @@ def calculate(arr):
                 stack.append(result)
         else:
             stack.append(int(i))
+    res = stack[0]
+    if res == int(res):
+        res = int(res)
 
-    return stack
+    return res
 
-lst = list(input("Введите пример: "))
-if lst[-1] != "=":
-    print("Некорректный ввод!")
-    exit()
+
+expression = list(input("Введите пример: "))
 try:
-    check(lst)
-    print(*calculate(evaluate(lst)))
+    validate_expression(expression)
+    evaluated_expression = evaluate(expression)
+    calculated_expression = calculate(evaluated_expression)
+    print(calculated_expression)
 except (ValueError) as e:
     print(e)
 except (ZeroDivisionError) as e:

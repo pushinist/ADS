@@ -1,3 +1,4 @@
+import random
 def counting_sort(arr, place):
     output = [0] * len(arr)
     count = [0] * 10
@@ -25,6 +26,7 @@ def radix_sort(arr):
 
 
 lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
+#lst = [random.randint(-100, 100) for i in range(15)]
 arr_positive = [i for i in lst if i >= 0]
 arr_negative = [abs(i) for i in lst if i < 0]
 radix_sort(arr_positive)

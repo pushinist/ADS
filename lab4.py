@@ -1,10 +1,11 @@
-def swap_sort(lst):
+def bubble_sort(lst):
     for i in range(len(lst)):
-        for j in range(i, len(lst)):
-            if lst[j] < lst[i]:
-                lst[i], lst[j] = lst[j], lst[i]
+        for j in range(len(lst) - i - 1):
+            if lst[j] < lst[j + 1]:
+                lst[j], lst[j + 1] = lst[j + 1], lst[j]
 
 
 lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
-swap_sort(lst)
-print(f"Отсортированный список: {lst}, результат сортировки - {lst == sorted(lst)}")
+bubble_sort(lst)
+print(f"Отсортированный список: {lst}, результат сортировки по убыванию - {lst == list(reversed(sorted(lst)))}, по "
+      f"возрастанию - {lst == sorted(lst)}")

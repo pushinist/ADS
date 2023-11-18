@@ -1,3 +1,4 @@
+from random import randint
 def siftDown(lst, i, upper):
     while True:
         l, r = i * 2 + 1, i * 2 + 2
@@ -35,6 +36,10 @@ def heapsort(lst):
         siftDown(lst, 0, end)
 
 
-lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
+#lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
+lst = [randint(-100, 100) for i in range(15)]
+print(lst)
 heapsort(lst)
 print(f"Отсортированный список: {lst}, результат сортировки - {lst == sorted(lst)}")
+
+# Сложность: O(n * log(n)) в любом случае

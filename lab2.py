@@ -1,7 +1,4 @@
-import void
-
-
-def validate_expression(arr: list) -> void:
+def validate_expression(arr: list) -> None:
     brackets = []
 
     if arr[-1] != "=" or arr[-2] == " " or arr[0] == " ":
@@ -13,16 +10,17 @@ def validate_expression(arr: list) -> void:
     for i in arr:
         if '+)' in ''.join(arr) or '-)' in ''.join(arr) or '*)' in ''.join(arr) or '/)' in ''.join(arr):
             raise ValueError("Некорректный ввод!")
-        if i in '([{': 
+        if i in '([{':
             brackets.append(i)
-        elif i in ')]}':            
-            if not brackets:            
+        elif i in ')]}':
+            if not brackets:
                 raise ValueError("Некорректный ввод!")
-            if (i == ')' and brackets[-1] == '(') or (i == ']' and brackets[-1] == '[') or (i == '}' and brackets[-1] == '{'):
+            if (i == ')' and brackets[-1] == '(') or (i == ']' and brackets[-1] == '[') or (
+                    i == '}' and brackets[-1] == '{'):
                 brackets.pop()
     if brackets:
         raise ValueError("Некорректный ввод!")
-    
+
 
 def evaluate(arr):
     numbers = []
@@ -45,7 +43,7 @@ def evaluate(arr):
 
         elif i in '*/':
             streak += 1
-            if len(symbols) == 0 or symbols[-1] in '+-': 
+            if len(symbols) == 0 or symbols[-1] in '+-':
                 symbols.append(i)
             else:
                 while len(symbols) != 0 and symbols[-1] in '*/':
@@ -69,8 +67,9 @@ def evaluate(arr):
             raise ValueError("Некорректный ввод!")
     return numbers
 
+
 def calculate(arr):
-    stack = [] 
+    stack = []
     for i in arr:
         if i == '+':
             b = stack.pop()
@@ -110,7 +109,7 @@ try:
     evaluated_expression = evaluate(expression)
     calculated_expression = calculate(evaluated_expression)
     print(calculated_expression)
-except (ValueError) as e:
+except ValueError as e:
     print(e)
-except (ZeroDivisionError) as e:
+except ZeroDivisionError as e:
     print(e)

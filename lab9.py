@@ -1,45 +1,60 @@
 from random import randint
-def siftDown(lst, i, upper):
-    while True:
-        l, r = i * 2 + 1, i * 2 + 2
-        if max(l, r) < upper:
-            if lst[i] >= max(lst[l], lst[r]):
-                break
-            elif lst[l] > lst[r]:
-                lst[i], lst[l] = lst[l], lst[i]
-                i = l
-            else:
-                lst[i], lst[r] = lst[r], lst[i]
-                i = r
-        elif l < upper:
-            if lst[l] > lst[i]:
-                lst[l], lst[i] = lst[i], lst[l]
-                i = l
-            else:
-                break
-        elif r < upper:
-            if lst[r] > lst[i]:
-                lst[r], lst[i] = lst[i], lst[r]
-                i = r
-            else:
-                break
-        else:
-            break
 
 
-def heapsort(lst):
-    for j in range((len(lst) - 2) // 2, -1, -1):
-        siftDown(lst, j, len(lst))
+def heapify(array: list, length: int, root: int) -> None:
+    largest = root  # Initialize largest as root
+    left = 2 * root + 1  # left = 2*i + 1
+    right = 2 * root + 2  # right = 2*i + 2
 
-    for end in range(len(lst) - 1, 0, -1):
-        lst[0], lst[end] = lst[end], lst[0]
-        siftDown(lst, 0, end)
+    # See if left child of root exists and is
+    # greater than root
+
+    if left < length and array[root] < array[left]:
+        largest = left
+
+    # See if right child of root exists and is
+    # greater than root
+
+    if right < length and array[largest] < array[right]:
+        largest = right
+
+    # Change root, if needed
+
+    if largest != root:
+        (array[root], array[largest]) = (array[largest], array[root])  # swap
+
+        # Heapify the root.
+
+        heapify(array, length, largest)
 
 
-#lst = list(map(int, input("Введите последовательность чисел, разделяя их пробелом: ").split()))
-lst = [randint(-100, 100) for i in range(15)]
-print(lst)
-heapsort(lst)
-print(f"Отсортированный список: {lst}, результат сортировки - {lst == sorted(lst)}")
+# The main function to sort an array of given size
 
-# Сложность: O(n * log(n)) в любом случае
+def heap_sort(array: list):
+    length = len(array)
+
+    # Build a maxheap.
+    # Since last parent will be at ((length//2)-1) we can start at that location.
+
+    for i in range(length // 2 - 1, -1, -1):
+        heapify(array, length, i)
+
+    for i in range(length - 1, 0, -1):
+        (array[i], array[0]) = (array[0], array[i])
+        heapify(array, i, 0)
+    return array
+
+
+while True:
+    n = input("Рандомный список (1) или выбранный (2) ? ")
+    if n == '1':
+        array = [randint(-1000, 1000) for i in range(5)]
+        print(f"Сгенерированный список: {array}")
+        break
+    if n == '2':
+        array = list(map(int, input().split()))
+        break
+
+sorted_array = heap_sort(array)
+n = len(array)
+print(f"Отсортированный список: {sorted_array}, результат сортировки: {array == sorted_array}")

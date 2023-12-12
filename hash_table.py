@@ -67,7 +67,6 @@ class hash_table_open_addr:
 class hash_table_linked_list:
     def __init__(self) -> None:
         self.table = []
-    
 
     def insert(self, key: str, value: int) -> None:
         hashed_key = hash_func(key)
@@ -75,7 +74,7 @@ class hash_table_linked_list:
         while hashed_key >= len(self.table):
             self.table.append([])
         if len(self.table[hashed_key]) == 0:
-            self.table[hashed_key].append(key, value)
+            self.table[hashed_key].append((key, value))
             return
         if self.table[hashed_key][0][0] == key:
             self.table[hashed_key][0] = (key, value)
@@ -84,16 +83,35 @@ class hash_table_linked_list:
         while i < len(self.table[hashed_key]) and self.table[hashed_key][i][0] != key:
             i += 1
         if i >= len(self.table[hashed_key]):
-            self.table[hashed_key].append(key, value)
+            self.table[hashed_key].append((key, value))
             return
-        if self.table[hashed_key][i][0] == key
+        if self.table[hashed_key][i][0] == key:
             self.table[hashed_key][i] = (key, value)
-        
-        
 
-        
-            
+    def delete(self, key: str) -> None:
+        hashed_key = hash_func(key)
+        if len(self.table) < hashed_key or len(self.table[hashed_key]) == 0:
+            return
+        i = 0
+        while i < len(self.table[hashed_key]) and self.table[hashed_key][i][0] != key:
+            i += 1
+        if i >= len(self.table[hashed_key]):
+            return
+        if self.table[hashed_key][i][0] == key:
+            del self.table[hashed_key][i]
 
+    def get(self, key: str) -> int:
+        hashed_key = hash_func(key)
+        if hashed_key > len(self.table) or len(self.table[hashed_key]) == 0:
+            return None
+        i = 0
+        while i < len(self.table[hashed_key]) and self.table[hashed_key][i][0] != key:
+            i += 1
+        if i >= len(self.table[hashed_key]):
+            return None
+        if self.table[hashed_key][i][0] == key:
+            return self.table[hashed_key][i][1]
+        
 
 
 def test_linear():
@@ -116,5 +134,14 @@ def test_linear():
 
 
 def test_lists():
-    table =hash_table_linked_list()
-    
+    table = hash_table_linked_list()
+    table.insert("мама", 123)
+    table.insert("папа", 321)
+    table.insert("амам", 122)
+    #print(*table.table)
+    print(table.get('дфлыовдфылов'))
+    table.delete("амам")
+    table.delete("амам")
+    table.delete("мама")
+    #print(*table.table)
+

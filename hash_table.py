@@ -120,7 +120,7 @@ def test_linear():
     table.insert("мама", 123)
     table.insert("папа", 321)
     table.insert("амам", 122)
-    # print(*table.table)
+    print(*table.table)
     print(*prtlst(table.table))
     # table.delete('амам')
     print(*prtlst(table.table))
@@ -138,10 +138,13 @@ def test_lists():
     table.insert("мама", 123)
     table.insert("папа", 321)
     table.insert("амам", 122)
-    #print(*table.table)
+    print(*table.table)
     print(table.get('дфлыовдфылов'))
     table.delete("амам")
     table.delete("амам")
     table.delete("мама")
     #print(*table.table)
 
+
+
+test_linear()

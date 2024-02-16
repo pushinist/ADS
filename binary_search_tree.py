@@ -67,6 +67,27 @@ class Tree:
         print(node.data, end=' ')
 
 
+    def nonrecursive_inorderTraversal(self, node):
+        current = node
+
+        stack = []
+
+        while True:
+
+            if current is not None:
+                stack.append(current)
+                current = current.left
+            
+            elif stack:
+                current = stack.pop()
+                print(current.data, end=' ')
+                
+                current = current.right
+            
+            else:
+                break
+        print()
+
 
     def show_wide_tree(self, node):
         if node is None:
@@ -146,3 +167,5 @@ print(lst)
 t = Tree()
 for x in lst:
     t.append(Node(x))   
+
+t.nonrecursive_inorderTraversal(t.root)

@@ -41,13 +41,31 @@ class Tree:
                 s.right = obj
         return obj
 
-    def show_tree(self, node):
+    def inorderTraversal(self, node):
         if node is None:
-            return 
+            return
 
-        self.show_tree(node.left)
-        print(node.data)
-        self.show_tree(node.right)
+        self.inorderTraversal(node.left)
+        print(node.data, end=' ')
+        self.inorderTraversal(node.right)
+
+    def preorderTraversal(self, node):
+        if node is None:
+            return
+        
+        print(node.data, end=' ')
+        self.preorderTraversal(node.left)
+        self.preorderTraversal(node.right)
+    
+
+    def postorderTraversal(self, node):
+        if node is None:
+            return
+
+        self.postorderTraversal(node.left)
+        self.postorderTraversal(node.right)
+        print(node.data, end=' ')
+
 
 
     def show_wide_tree(self, node):
@@ -106,12 +124,25 @@ class Tree:
             sr, pr = self.__find_min(s.right, s)
             s.data = sr.data
             self.__del_one_child(sr, pr)
-        
+    
 
-v = [10, 5, 7, 16, 13, 2, 20]
+    def find(self, node, key):
+        if node is None or key == node.data:
+            return node
+        if key < node.data:
+            return self.find(node.left, key)
+        else:
+            return self.find(node.right, key)
 
+
+def simplify(s: str):        
+   return s.replace('(', '').replace(')', '').replace(',', '').split()
+
+
+string = '8 (3 (1, 6 (4, 7)), 10 (, 14 (13,)))'
+
+lst = list(map(int, simplify(string)))
+print(lst)
 t = Tree()
-for x in v:
-    t.append(Node(x))
-t.del_node(5)
-t.show_wide_tree(t.root)
+for x in lst:
+    t.append(Node(x))   

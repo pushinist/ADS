@@ -4,7 +4,7 @@ def create_unsorted_file():
     example_data = 'test_data.txt'
     with open(example_data, 'w') as example:
         for x in range(1000):
-            
+            example.writelines(str(random.randint(0, 100000)) + '\n')
     return example_data
  
 def create_sorted_chunks(input_path, chunk_size):

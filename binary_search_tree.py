@@ -30,7 +30,7 @@ class Tree:
     def append(self, obj):
         if self.root is None:
             self.root = obj
-            return obj
+            return
         
         s, p, fl_find = self.__find(self.root, None, obj.data)
 
@@ -39,7 +39,7 @@ class Tree:
                 s.left = obj
             else:
                 s.right = obj
-        return obj
+        return
 
     def inorderTraversal(self, node):
         if node is None:
@@ -69,41 +69,21 @@ class Tree:
 
     def nonrecursive_inorderTraversal(self, node):
         current = node
-
         stack = []
 
         while True:
-
             if current is not None:
                 stack.append(current)
                 current = current.left
             
             elif stack:
                 current = stack.pop()
-                print(current.data, end=' ')
-                
+                print(current.data, end=' ')                
                 current = current.right
-            
             else:
                 break
         print()
 
-
-    def show_wide_tree(self, node):
-        if node is None:
-            return
-        
-        v = [node]
-        while v:
-            vn = []
-            for x in v:
-                print(x.data, end=' ')
-                if x.left:
-                    vn += [x.left]
-                if x.right:
-                    vn += [x.right]
-            print()
-            v = vn
 
     def __del_leaf(self, s, p):
         if p.left == s:
@@ -155,6 +135,21 @@ class Tree:
         else:
             return self.find(node.right, key)
 
+    def ascending_sort(self, node):
+        if node is None:
+            return
+
+        self.inorderTraversal(node.left)
+        print(node.data, end=' ')
+        self.inorderTraversal(node.right)
+
+    def descending_sort(self, node):
+        if node is None:
+            return
+
+        self.descending_sort(node.right)
+        print(node.data, end=' ')
+        self.descending_sort(node.left)
 
 def simplify(s: str):        
    return s.replace('(', '').replace(')', '').replace(',', '').split()
@@ -168,4 +163,8 @@ t = Tree()
 for x in lst:
     t.append(Node(x))   
 
-t.nonrecursive_inorderTraversal(t.root)
+#t.nonrecursive_inorderTraversal(t.root)
+#t.ascending_sort(t.root)
+t.preorderTraversal(t.root)
+#print()
+#t.descending_sort(t.root)

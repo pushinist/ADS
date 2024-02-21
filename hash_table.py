@@ -122,7 +122,7 @@ def test_linear():
     table.insert("амам", 122)
     print(*table.table)
     print(*prtlst(table.table))
-    # table.delete('амам')
+    #table.delete('амам')
     print(*prtlst(table.table))
     table.delete("амам")
     print(*prtlst(table.table))
